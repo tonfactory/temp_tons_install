@@ -3,7 +3,7 @@
 {
 main() {
     if ! required_python_version; then 
-        err "wton supports python3 version higher than 3.8. Please, install new python3 version from official repository: https://www.python.org/downloads/. Then run your command again."
+        err "wton supports python3 version higher than 3.8. Please, install new python3 version from the official repository: https://www.python.org/downloads/. Then run your command again."
         exit 1
     fi
 
