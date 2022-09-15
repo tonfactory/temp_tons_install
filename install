@@ -3,14 +3,14 @@
 {
 main() {
     if ! required_python_version; then 
-        err "wton supports python3 version higher than 3.8. Please, install new python3 version from the official repository: https://www.python.org/downloads/. Then run your command again."
+        err "tons supports python3 version higher than 3.8. Please, install new python3 version from the official repository: https://www.python.org/downloads/. Then run your command again."
         exit 1
     fi
 
     python3 -m pip install -U pip
-    python3 -m pip install wton
+    python3 -m pip install tons
 
-    printf "wton has been installed succesfully!" 1>&2
+    printf "tons has been installed succesfully!" 1>&2
 }
 
 required_python_version() {
@@ -18,7 +18,7 @@ required_python_version() {
 }
 
 err() {
-    printf 'wton installation: %s\n' "$1" >&2
+    printf 'tons installation: %s\n' "$1" >&2
     exit 1
 }
 
