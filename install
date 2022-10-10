@@ -2,13 +2,8 @@
 LATEST_RELEASE_URL='https://github.com/tonfactory/temp_tons_install/releases/latest/download/tons-interactive.zip'
 
 main() {
-  echo "-------"
-  echo $0
-  echo "-------"
-  echo ps -p $$
-  echo "-------"
+  echo "Version 1.0.0"
   temp_dir=$(mktemp -d)
-  terminal=$(echo $0)
   cd $temp_dir
   wget $LATEST_RELEASE_URL
   unzip tons-interactive.zip
