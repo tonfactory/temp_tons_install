@@ -7,13 +7,15 @@ main() {
   cd $temp_dir
   wget $LATEST_RELEASE_URL
   unzip tons-interactive.zip
-  cp -R tons-interactive.app/ /Applications/tons-interactive.app/
+  cp -fR tons-interactive.app/ /Applications/tons-interactive.app/
   shell_info=$(ps -p $$)
   echo $shell_info
   if [[ $shell_info =~ .*zsh.* ]]; then
     grep -qxF 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' ~/.zshrc || echo 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' >> ~/.zshrc
+    source ~/.zshrc
   elif [[ $shell_info =~ .*bash.* ]]; then
     grep -qxF 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' ~/.bashrc || echo 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' >> ~/.bashrc
+    source ~/.bashrc
   else
     err "Your terminal is not supported"
   fi
