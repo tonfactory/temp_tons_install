@@ -3,7 +3,7 @@ LATEST_RELEASE_URL='https://github.com/tonfactory/temp_tons_install/releases/lat
 
 main() {
   temp_dir=$(mktemp -d)
-  shell_info=$(ps -o comm= -p $$)
+  shell_info=$(ps -p $$)
 
   cd $temp_dir
   wget $LATEST_RELEASE_URL
