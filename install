@@ -1,20 +1,24 @@
-#!/bin/bash
-
 {
+LATEST_RELEASE_URL='https://github.com/tonfactory/temp_tons_install/releases/latest/download/tons-interactive.zip'
+
 main() {
-    if ! required_python_version; then 
-        err "tons supports python3 version higher than 3.8. Please, install new python3 version from the official repository: https://www.python.org/downloads/. Then run your command again."
-        exit 1
-    fi
+  temp_dir=$(mktemp -d)
+  terminal=$(echo $0)
+  cd $temp_dir
+  wget $LATEST_RELEASE_URL
+  unzip tons-interactive.zip
+  cp -R tons-interactive.app/ /Applications/tons-interactive.app/
+  shell_info=$(ps -p $$)
+  echo $shell_info
+  if [[ $shell_info =~ .*zsh.* ]]; then
+    grep -qxF 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' ~/.zshrc || echo 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' >> ~/.zshrc
+  elif [[ $shell_info =~ .*bash.* ]]; then
+    grep -qxF 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' ~/.bashrc || echo 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' >> ~/.bashrc
+  else
+    err "Your terminal is not supported"
+  fi
 
-    python3 -m pip install -U pip
-    python3 -m pip install tons
-
-    printf "tons has been installed succesfully!" 1>&2
-}
-
-required_python_version() {
-    python3 -c 'import sys; exit(1) if sys.version_info.major < 3 and sys.version_info.minor < 8 else exit(0)'
+  rm -rf $temp_dir
 }
 
 err() {
