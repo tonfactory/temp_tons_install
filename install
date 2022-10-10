@@ -24,12 +24,12 @@ main() {
   rm -rf $temp_dir
   
   echo "------------"
-  echo "tons-interactive installed successfully!"
+  echo "✅ tons-interactive installed successfully!"
   echo "To run it type 'tons-interactive' in the terminal and press Enter"
 }
 
 err() {
-    printf 'tons installation: %s\n' "$1" >&2
+    printf '❌ tons installation: %s\n' "$1" >&2
     exit 1
 }
 
