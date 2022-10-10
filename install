@@ -3,12 +3,13 @@ LATEST_RELEASE_URL='https://github.com/tonfactory/temp_tons_install/releases/lat
 
 main() {
   temp_dir=$(mktemp -d)
-  shell_info=$(ps -p $$)
+  shell_info=$(ps -o command)
 
   cd $temp_dir
   wget $LATEST_RELEASE_URL
   unzip tons-interactive.zip
-  mv -fr tons-interactive.app/ /Applications/tons-interactive.app/
+  rm -rf /Applications/tons-interactive.app/
+  mv tons-interactive.app/ /Applications/tons-interactive.app/
   echo $shell_info
   if [[ $shell_info =~ .*zsh.* ]]; then
     grep -qxF 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' ~/.zshrc || echo 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' >> ~/.zshrc
