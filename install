@@ -8,7 +8,7 @@ main() {
   wget $LATEST_RELEASE_URL
   unzip tons-interactive.zip
   cp -fR tons-interactive.app/ /Applications/tons-interactive.app/
-  shell_info=$(ps -p $$)
+  shell_info=$(echo $0)
   echo $shell_info
   if [[ $shell_info =~ .*zsh.* ]]; then
     grep -qxF 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' ~/.zshrc || echo 'alias tons-interactive="/Applications/tons-interactive.app/Contents/MacOS/tons-interactive"' >> ~/.zshrc
