@@ -22,6 +22,10 @@ main() {
   fi
 
   rm -rf $temp_dir
+  
+  echo "------------"
+  echo "tons-interactive installed successfully!"
+  echo "To run it type 'tons-interactive' in the terminal and press Enter"
 }
 
 err() {
